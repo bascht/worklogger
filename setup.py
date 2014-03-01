@@ -6,7 +6,7 @@ from setuptools import find_packages
 requirements = ['PyZenity']
 
 setup(name='worklogger',
-      version='0.0.2',
+      version='1.0.0',
       description='Small helper app, to keep track of your worklog',
       long_description='',
       keywords='work worklog markdown',
