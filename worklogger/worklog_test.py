@@ -2,8 +2,6 @@ import unittest
 import os
 from mock import PropertyMock
 from mock import patch
-#from unittest import mock
-
 from worklog import Worklog
 
 
