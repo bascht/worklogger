@@ -2,7 +2,7 @@ import string
 import time
 
 
-class Worklog:
+class Worklog(object):
     def __init__(self, logfile):
         self.logfile = logfile
 

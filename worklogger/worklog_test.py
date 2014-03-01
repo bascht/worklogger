@@ -6,10 +6,11 @@ from mock import patch
 
 from worklog import Worklog
 
-@patch('worklogger.Worklog.time',
-            PropertyMock(return_value='23:52'))
-@patch('worklogger.Worklog.date',
-            PropertyMock(return_value='01.02.2014 Saturday'))
+
+@patch('worklog_test.Worklog.time',
+       PropertyMock(return_value='23:52'))
+@patch('worklog_test.Worklog.date',
+       PropertyMock(return_value='01.02.2014 Saturday'))
 class WorklogTest(unittest.TestCase):
     def setUp(self):
         try:
