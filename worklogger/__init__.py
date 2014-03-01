@@ -61,4 +61,3 @@ def main():
             lines = (line.strip() for line in sys.stdin.readlines())
             logger.log(suggestion=" ".join(lines))
 
-main()
