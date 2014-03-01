@@ -2,9 +2,8 @@ worklogger
 ==========
 > Your friendly neighbourhood Worklog housekeeper. 
 
-
+[![Worklogger on PyPi](https://pypip.in/v/worklogger/badge.png)](https://pypi.python.org/pypi/worklogger/)
 [![Build Status](https://travis-ci.org/bascht/worklogger.png?branch=master)](https://travis-ci.org/bascht/worklogger)
-
 
 
 Worklogger helps keeping track of your daily work activities. It just sits in the background
