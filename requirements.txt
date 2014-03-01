@@ -1,6 +1,1 @@
 PyZenity==0.1.4
-stevedore==0.14.1
-virtualenv==1.11.4
-virtualenv-clone==0.2.4
-virtualenvwrapper==4.1.1
-wheel==0.22.0

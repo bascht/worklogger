@@ -1,14 +1,15 @@
 import unittest
 import os
-from unittest import mock
+from mock import PropertyMock
+from mock import patch
+#from unittest import mock
 
 from worklog import Worklog
 
-
-@mock.patch('worklogger.Worklog.time',
-            mock.PropertyMock(return_value='23:52'))
-@mock.patch('worklogger.Worklog.date',
-            mock.PropertyMock(return_value='01.02.2014 Saturday'))
+@patch('worklogger.Worklog.time',
+            PropertyMock(return_value='23:52'))
+@patch('worklogger.Worklog.date',
+            PropertyMock(return_value='01.02.2014 Saturday'))
 class WorklogTest(unittest.TestCase):
     def setUp(self):
         try:
