@@ -8,6 +8,7 @@ import argparse
 
 from worklog import Worklog
 from logger import Logger
+from zenity_frontend import ZenityFrontend
 
 BANNER = """
 Welcome to Worklogger, your friendly neighbourhood-Logger.
@@ -64,7 +65,7 @@ def main():
 
     worklog = Worklog(args.worklog)
     frontend = ZenityFrontend
-    logger = Logger(backend=worklog, frontend=zenity)
+    logger = Logger(backend=worklog, frontend=frontend)
 
     if args.start:
         logger.today()
