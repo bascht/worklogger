@@ -6,16 +6,19 @@ class TestBackend:
     @staticmethod
     def get_last():
         return "my_last_line"
+
     @staticmethod
     def append(log):
         TestBackend.next_line = log
+
 
 class TestFrontend:
     @staticmethod
     def query(text, suggestion):
         TestFrontend.text = text
-        TestFrontend.suggestion=suggestion
+        TestFrontend.suggestion = suggestion
         return 'my_next_line'
+
 
 class LoggerTest(unittest.TestCase):
     def setUp(self):

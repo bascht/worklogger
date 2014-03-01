@@ -4,15 +4,18 @@ from unittest import mock
 
 from worklog import Worklog
 
-@mock.patch('worklogger.Worklog.time', mock.PropertyMock(return_value='23:52'))
-@mock.patch('worklogger.Worklog.date', mock.PropertyMock(return_value='01.02.2014 Saturday'))
 
+@mock.patch('worklogger.Worklog.time',
+            mock.PropertyMock(return_value='23:52'))
+@mock.patch('worklogger.Worklog.date',
+            mock.PropertyMock(return_value='01.02.2014 Saturday'))
 class WorklogTest(unittest.TestCase):
     def setUp(self):
         try:
             os.mkdir('data')
             testing = open('data/testing.md', 'w')
-            testing.writelines(["* 23:41 first entry\n","* 23:42 last entry\n"])
+            testing.writelines(
+                ["* 23:41 first entry\n", "* 23:42 last entry\n"])
             testing.close()
         except FileExistsError:
             print("data directory is dirty.")

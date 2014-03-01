@@ -1,6 +1,6 @@
 class Logger:
     def __init__(self, backend, frontend):
-        self.backend  = backend
+        self.backend = backend
         self.frontend = frontend
 
     def log(self, suggestion=None):

@@ -1,6 +1,7 @@
 import string
 import time
 
+
 class Worklog:
     def __init__(self, logfile):
         self.logfile = logfile
@@ -13,18 +14,18 @@ class Worklog:
     def today(self, location):
         date = self.date
         start_time = self.time
-        header = self.header.substitute( 
-            start_time =  start_time,
-            date = date,
-            location = location
+        header = self.header.substitute(
+            start_time=start_time,
+            date=date,
+            location=location
             )
         self.write(header)
 
     def append(self, message):
         log = string.Template("* $time $message\n")
         self.write(log.substitute(
-            time = self.time,
-            message = message
+            time=self.time,
+            message=message
         ))
 
     def get_last(self, num=2):
@@ -43,5 +44,5 @@ class Worklog:
 
     @property
     def header(self):
-        return string.Template("\n# $date\n\n## ($start_time - 16:00)\n* @$location\n")
-
+        template = "\n# $date\n\n## ($start_time - 16:00)\n* @$location\n"
+        return string.Template(template)
