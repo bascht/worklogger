@@ -47,7 +47,8 @@ def main():
     args = parser.parse_args()
 
     worklog = Worklog(args.worklog)
-    logger  = Logger(worklog)
+    frontend = ZenityFrontend
+    logger  = Logger(backend=worklog, frontend=zenity)
 
     if args.start:
         logger.today()

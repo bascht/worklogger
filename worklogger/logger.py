@@ -1,14 +1,14 @@
-import PyZenity
-
 class Logger:
-    def __init__(self, backend):
-        self.backend = backend
+    def __init__(self, backend, frontend):
+        self.backend  = backend
+        self.frontend = frontend
 
     def log(self, suggestion=None):
         last = self.backend.get_last()
-        log = PyZenity.GetText(text="".join(last), entry_text=suggestion)
+        log = self.frontend.query(text="".join(last), suggestion=suggestion)
         if log:
             self.backend.append(log)
+
     def today(self):
-        location = PyZenity.GetText('Where are we today?')
+        location = self.frontend.query(text='Where are we today?')
         self.backend.today(location)
