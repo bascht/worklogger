@@ -9,30 +9,56 @@ import argparse
 from worklog import Worklog
 from logger import Logger
 
-WORKLOG = '/tmp/Worklog.md'
-worklog = Worklog(WORKLOG)
+BANNER="""
+Welcome to Worklogger, your friendly neighbourhood-Logger.
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Your friendly neighborhood worklogger')
-    subparsers = parser.add_subparsers()
+Worklogger helps you keeping track your work-activities by
+asking you every now and then and appending it to a markdown
+file.  Worklogger uses the environment-variable $WORKLOG to find 
+your worklog file. Otherwise you can use the parameter --file.
 
-    log = subparsers.add_parser('log')
-    log.add_argument('--text')
-    log.set_defaults(subparser='log')
+Worklogger will ask you every hour (3600 seconds) - but you
+can adjust this timespan via the parameter --interval.
 
-    loop = subparsers.add_parser('loop')
-    loop.set_defaults(subparser='loop')
+Running Worklogger
+------------------
 
-    today = subparsers.add_parser('today')
-    today.set_defaults(subparser='today')
+Start Worklogger with
+
+    $ worklogger start
+
+Enter new Logs by simply calling worklogger
+
+    $ worklogger
+
+
+You can also pipe logs directly into worklogger:
+
+    $ echo "This is my entry" | worklogger
+"""
+
+def main():
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=BANNER)
+
+    parser.add_argument('--file', dest='worklog', default=os.environ['WORKLOG'], help='Path to your Worklog.md file')
+    parser.add_argument('--interval', dest='interval', default=3600, type=int, help='Interval (in Seconds) between logentries')
+    parser.add_argument('start', default=False, type=bool, nargs="?")
 
     args = parser.parse_args()
 
-    if args.subparser == 'today':
-        Logger.today(worklog)
-    elif args.subparser == 'log':
-        Logger.log(worklog)
-    else:
+    worklog = Worklog(args.worklog)
+    logger  = Logger(worklog)
+
+    if args.start:
+        logger.today()
         while(True):
-            time.sleep(5)
-            Logger.log(worklog)
+            logger.log()
+            time.sleep(args.interval)
+    else:
+        if(sys.stdin.isatty()):
+            logger.log()
+        else:
+            lines = (line.strip() for line in sys.stdin.readlines())
+            logger.log(suggestion=" ".join(lines))
+
+main()
